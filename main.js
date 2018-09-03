@@ -37,6 +37,13 @@ canvas.addEventListener("touchmove", function(e) {
     var g = imageData[index + 1]
     var b = imageData[index + 2];
     if (r + g + b == 0) {
-        navigator.vibrate(100);
+        navigator.vibrate(1000 * 60);
     }
+    else {
+        navigator.vibrate(0);
+    }
+});
+
+canvas.addEventListener("touchend", function(e) {
+    navigator.vibrate(0);
 });
