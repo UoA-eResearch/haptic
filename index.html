@@ -8,9 +8,24 @@
                 width: 100%;
                 height: 100%;
             }
+            #intro {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: white;
+                font-size: 50px;
+                padding-top: 40%;
+            }
         </style>
     </head>
     <body>
+        <div id="intro" onclick="this.style.display = 'none'">
+            This is an experimental game involving haptics. As such, it will only work on mobile devices with a vibration motor.<br><br>
+            The objective of the game is to move your finger from the bottom green zone to the top, without touching the black lines.<br><br>
+            If you do touch a black line, you should feel your phone vibrate.<br><br>
+            Try to complete the game with your eyes shut.<br><br>
+            Please tap anywhere to begin.
+        </div>
         <canvas id='maze'></canvas>
         <script src="main.js"></script>
     </body>
