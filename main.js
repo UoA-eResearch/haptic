@@ -1,3 +1,7 @@
+if (!navigator.vibrate) {
+    document.getElementById("intro").innerText = "Your device or browser does not support vibration";
+}
+
 var canvas = document.getElementById('maze');
 var ctx = canvas.getContext('2d');
 canvas.width  = window.innerWidth;
