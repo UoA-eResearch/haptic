@@ -36,23 +36,40 @@ for (var i = 1; i < 10; i++) {
 
 var imageData = ctx.getImageData(0, 0, w, h).data;
 
+var vibrateInterval = null;
+
+function startPersistentVibrate(duration, interval) {
+    if (!vibrateInterval) {
+        vibrateInterval = setInterval(function() {
+            console.log("vibrating for " + duration);
+            navigator.vibrate(duration);
+        }, duration + interval);
+    }
+}
+
+function stopPersistentVibrate() {
+    console.log("stopping vibration");
+    clearInterval(vibrateInterval);
+    vibrateInterval = null;
+}
+
 function touch(e) {
     var touch = e.touches[0];
     if (touch.pageY < dy) {
         tada.play();
     }
     if (touch.pageY < dy || touch.pageY > (h - dy)) {
-        navigator.vibrate([500, 250, 500, 250, 500, 250, 500, 250, 500, 250, 500]);
+        startPersistentVibrate(100, 100);
     } else {
         var index = (Math.floor(touch.pageY) * w + Math.floor(touch.pageX)) * 4;
         var r = imageData[index];
         var g = imageData[index + 1]
         var b = imageData[index + 2];
         if (r + g + b == 0) {
-            navigator.vibrate(1000 * 60);
+            startPersistentVibrate(1000, 0);
         }
         else {
-            navigator.vibrate(0);
+            stopPersistentVibrate();
         }
     }
 }
@@ -61,5 +78,5 @@ canvas.addEventListener("touchstart", touch);
 canvas.addEventListener("touchmove", touch);
 
 canvas.addEventListener("touchend", function(e) {
-    navigator.vibrate(0);
+    stopPersistentVibrate();
 });
