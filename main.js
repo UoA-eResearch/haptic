@@ -37,14 +37,21 @@ for (var i = 1; i < 10; i++) {
 var imageData = ctx.getImageData(0, 0, w, h).data;
 
 var vibrateInterval = null;
+var lastDuration;
+var lastInterval;
 
 function startPersistentVibrate(duration, interval) {
+    if (duration != lastDuration || interval != lastInterval) {
+        stopPersistentVibrate();
+    }
     if (!vibrateInterval) {
         navigator.vibrate(duration);
         vibrateInterval = setInterval(function() {
             console.log("vibrating for " + duration);
             navigator.vibrate(duration);
         }, duration + interval);
+        lastDuration = duration;
+        lastInterval = interval;
     }
 }
 
