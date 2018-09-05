@@ -52,6 +52,7 @@ function stopPersistentVibrate() {
     console.log("stopping vibration");
     clearInterval(vibrateInterval);
     vibrateInterval = null;
+    navigator.vibrate(0);
 }
 
 function touch(e) {
