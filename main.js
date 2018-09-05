@@ -41,10 +41,11 @@ var lastDuration;
 var lastInterval;
 
 function startPersistentVibrate(duration, interval) {
-    if (duration != lastDuration || interval != lastInterval) {
+    if (vibrateInterval && (duration != lastDuration || interval != lastInterval)) {
         stopPersistentVibrate();
     }
     if (!vibrateInterval) {
+        console.log("vibrating for " + duration);
         navigator.vibrate(duration);
         vibrateInterval = setInterval(function() {
             console.log("vibrating for " + duration);
