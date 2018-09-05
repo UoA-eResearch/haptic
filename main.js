@@ -36,10 +36,13 @@ for (var i = 1; i < 10; i++) {
 
 var imageData = ctx.getImageData(0, 0, w, h).data;
 
-canvas.addEventListener("touchmove", function(e) {
+function touch(e) {
     var touch = e.touches[0];
     if (touch.pageY < dy) {
         tada.play();
+    }
+    if (touch.pageY < dy || touch.pageY > h - dy) {
+        navigator.vibrate([500, 250, 500, 250, 500, 250, 500, 250, 500, 250, 500]);
     }
     var index = (Math.floor(touch.pageY) * w + Math.floor(touch.pageX)) * 4;
     var r = imageData[index];
@@ -51,7 +54,10 @@ canvas.addEventListener("touchmove", function(e) {
     else {
         navigator.vibrate(0);
     }
-});
+}
+
+canvas.addEventListener("touchstart", touch);
+canvas.addEventListener("touchmove", touch);
 
 canvas.addEventListener("touchend", function(e) {
     navigator.vibrate(0);
