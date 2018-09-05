@@ -40,6 +40,7 @@ var vibrateInterval = null;
 
 function startPersistentVibrate(duration, interval) {
     if (!vibrateInterval) {
+        navigator.vibrate(duration);
         vibrateInterval = setInterval(function() {
             console.log("vibrating for " + duration);
             navigator.vibrate(duration);
