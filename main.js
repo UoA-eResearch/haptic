@@ -41,18 +41,19 @@ function touch(e) {
     if (touch.pageY < dy) {
         tada.play();
     }
-    if (touch.pageY < dy || touch.pageY > h - dy) {
+    if (touch.pageY < dy || touch.pageY > (h - dy)) {
         navigator.vibrate([500, 250, 500, 250, 500, 250, 500, 250, 500, 250, 500]);
-    }
-    var index = (Math.floor(touch.pageY) * w + Math.floor(touch.pageX)) * 4;
-    var r = imageData[index];
-    var g = imageData[index + 1]
-    var b = imageData[index + 2];
-    if (r + g + b == 0) {
-        navigator.vibrate(1000 * 60);
-    }
-    else {
-        navigator.vibrate(0);
+    } else {
+        var index = (Math.floor(touch.pageY) * w + Math.floor(touch.pageX)) * 4;
+        var r = imageData[index];
+        var g = imageData[index + 1]
+        var b = imageData[index + 2];
+        if (r + g + b == 0) {
+            navigator.vibrate(1000 * 60);
+        }
+        else {
+            navigator.vibrate(0);
+        }
     }
 }
 
