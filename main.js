@@ -76,7 +76,7 @@ function touch(e) {
         var g = imageData[index + 1]
         var b = imageData[index + 2];
         if (r + g + b == 0) {
-            startPersistentVibrate(1000, 0);
+            startPersistentVibrate(1000 * 60, 0);
         }
         else {
             stopPersistentVibrate();
