@@ -2,6 +2,8 @@ if (!navigator.vibrate) {
     document.getElementById("intro").innerText = "Your device or browser does not support vibration";
 }
 
+var tada = new Audio("tada.mp3");
+
 var canvas = document.getElementById('maze');
 var ctx = canvas.getContext('2d');
 canvas.width  = window.innerWidth;
@@ -36,6 +38,9 @@ var imageData = ctx.getImageData(0, 0, w, h).data;
 
 canvas.addEventListener("touchmove", function(e) {
     var touch = e.touches[0];
+    if (touch.pageY < dy) {
+        tada.play();
+    }
     var index = (Math.floor(touch.pageY) * w + Math.floor(touch.pageX)) * 4;
     var r = imageData[index];
     var g = imageData[index + 1]
